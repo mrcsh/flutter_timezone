@@ -1,3 +1,7 @@
+## 4.1.0
+
+* flutter_timezone now supports Swift Package Manager ([40](https://github.com/tjarvstrand/flutter_timezone/pull/44)) @MaikuB
+
 ## 4.0.0
 
 * flutter_timezone now supports Linux ([40](https://github.com/tjarvstrand/flutter_timezone/pull/40)) @dg76
