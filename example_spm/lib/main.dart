@@ -23,17 +23,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _initData() async {
-    try {
-      _timezone = await FlutterTimezone.getLocalTimezone();
-    } catch (e) {
-      print('Could not get the local timezone');
-    }
-    try {
-      _availableTimezones = await FlutterTimezone.getAvailableTimezones();
-      _availableTimezones.sort();
-    } catch (e) {
-      print('Could not get available timezones');
-    }
+    _timezone = await FlutterTimezone.getLocalTimezone();
+    _availableTimezones = await FlutterTimezone.getAvailableTimezones();
+    _availableTimezones.sort();
     if (mounted) {
       setState(() {});
     }
@@ -48,7 +40,7 @@ class _MyAppState extends State<MyApp> {
           child: const Icon(Icons.refresh),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

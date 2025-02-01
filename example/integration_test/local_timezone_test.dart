@@ -7,17 +7,14 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('getLocalTimezone', () {
-    final expected = const String.fromEnvironment('EXPECTED_TZ');
+    // ignore: do_not_use_environment
+    const expected = String.fromEnvironment('EXPECTED_TZ');
 
     testWidgets('check that the local timezone is $expected', (tester) async {
-      await tester.pumpWidget(MyApp());
+      await tester.pumpWidget(const MyApp());
       await tester.pumpAndSettle();
 
-      Text tzTextWidget = find
-          .byKey(const ValueKey('timeZoneLabel'))
-          .evaluate()
-          .first
-          .widget as Text;
+      final tzTextWidget = find.byKey(const ValueKey('timeZoneLabel')).evaluate().first.widget as Text;
 
       expect(tzTextWidget.data, expected);
     });

@@ -10,12 +10,8 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 ///
 class FlutterTimezonePlugin {
   static void registerWith(Registrar registrar) {
-    final MethodChannel channel = MethodChannel(
-      'flutter_timezone',
-      const StandardMethodCodec(),
-      registrar,
-    );
-    final FlutterTimezonePlugin instance = FlutterTimezonePlugin();
+    final channel = MethodChannel('flutter_timezone', const StandardMethodCodec(), registrar);
+    final instance = FlutterTimezonePlugin();
     channel.setMethodCallHandler(instance.handleMethodCall);
   }
 
@@ -28,9 +24,7 @@ class FlutterTimezonePlugin {
       default:
         throw PlatformException(
             code: 'Unimplemented',
-            details:
-                "The flutter_native_timezone plugin for web doesn't implement "
-                "the method '${call.method}'");
+            details: "The flutter_native_timezone plugin for web doesn't implement the method '${call.method}'");
     }
   }
 
@@ -42,12 +36,10 @@ class FlutterTimezonePlugin {
   }
 
   List<String> _getAvailableTimezones() {
-    final function = supportedValuesOf as _DartFunctionSupportedValuesOf?;
+    final function = supportedValuesOf as List<String> Function(String value)?;
     return function?.call('timeZone') ?? [_getLocalTimeZone()];
   }
 }
-
-typedef _DartFunctionSupportedValuesOf = List<String> Function(String value);
 
 @JS('Intl.supportedValuesOf')
 external JSFunction? supportedValuesOf;
