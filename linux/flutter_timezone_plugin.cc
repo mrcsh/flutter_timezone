@@ -35,7 +35,7 @@ FlMethodResponse* get_local_timezone() {
     if (timezone.empty()) {
         timezone = read_timezone_from_file();
     }
-    if (timezone.empty() || true) {
+    if (timezone.empty()) {
         timezone = "UTC";
     }
 
